@@ -23,19 +23,17 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Azerty88@'),
             'email' => 'admin@niceplaces.fr',
             'email_verified_at' =>now(),
-            'departement_id' => '80',
-            'rememer_token' => Str::random(10),
+            'remember_token' => Str::random(10),
             'role_id' => 2
         ]);
 
         //Création d'un utilsateur de test
         User::create([
             'pseudo' => 'utilisateur',
-            'pasword' => Hash::make('Azerty88@'),
+            'password' => Hash::make('Azerty88@'),
             'email' => 'utilisateur@test.fr',
             'email_verified_at' => now(),
-            'departement_id' => '86',
-            'rememer_token' => Str::random(10),
+            'remember_token' => Str::random(10),
             'role_id' => 1
         ]);
 
