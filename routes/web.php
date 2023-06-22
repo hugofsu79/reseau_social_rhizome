@@ -12,15 +12,28 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//******************************* page de connexion/Inscription ***************/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route méthode http ( url, [Emplacement du contrôleur concerné, méthode du ctrl concerné])-> nom de la rout
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
+//******************************* ACCUEIL (home.blade.php) liste des messages ***************/
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+
+//******************************* ACCUEIL (home.blade.php) liste des messages ***************/
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//******************************* ROUTE resource USER ***************/
 
-Auth::routes();
+Route::resource('/users', App\Http\Controllers\UserController::class)->except('index', 'creat','show');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//******************************* Ajoute message qui ce dirige à message.store ***************/
+// Auth::routes(message.store);
+
+
+//******************************* Route  resource POST ***************/
+
+Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index', 'create', 'show');
+
+
