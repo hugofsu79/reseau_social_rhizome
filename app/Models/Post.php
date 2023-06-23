@@ -12,6 +12,12 @@ class Post extends Model
     // Je charge automatiquement l'utilisateur à chaque fois que je récupère un message 
     protected $with  = ['user'];
 
+
+    protected $fillable = [
+        'content', 'image', 'tags', 'user_id',          
+    ];
+
+
     // nom de la fonction au singulier car 1 seul user en relation
     // cardinalité 1,1
     public function user()
@@ -26,8 +32,4 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function message()
-    {
-        return $this->hasMany(User::class);
-    }
 }

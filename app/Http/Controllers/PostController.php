@@ -18,18 +18,18 @@ class PostController extends Controller
         //1) On valide les champs en précisant les critères attendus
         $request->validate([
             //'name de l'input-> [critères]
-            'content' => 'required|min:25| max 1000',
-            'tags' => 'required|min:3|max:50',
-            'image' => 'nullable'
+            'content' => 'required|min:25|max:1000',
+            'image' => 'nullable|string',
+            'tags' => 'required|min:3|max:50'
             // Autre syntaxe possible : 'content' => ['required', 'min:25', 'max:1000']
         ]);
 
         //2) Sauvegarde du message => Va lancer un insert into en SQL
         Post::create([                                  // 3 syntaxe possibles pour accéder au contenu de $request
-            'content' => $request->cotent,          // Syntaxe objet 
-            'tags' => $request['tags'],             // syntaxe tableau associatif
-            'image' => $request->input('image'),    // autre syntaxe
-            'user_id' => Auth::user()->id // J'accède à l'id du user connecté
+            'content' => $request->cotent,              // Syntaxe objet 
+            'tags' => $request['tags'],                 // syntaxe tableau associatif
+            'image' => $request->input('image'),        // autre syntaxe
+            'user_id' => Auth::user()->id               // J'accède à l'id du user connecté
         ]);
 
         //3) On redirige vers l'accueil avec un message de succès
