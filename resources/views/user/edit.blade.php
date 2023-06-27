@@ -11,14 +11,15 @@
 
         <div class="row">
 
-            <form class="col-4 mx-auto" action="{{ route('users.update', $user) }}" method="POST" enctype="multipart/form-data">
+            <form class="col-4 mx-auto" action="{{ route('users.update', $user) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
                     <label for="pseudo">Nouveau message</label>
-                    <input required type="text" class="form-control" name="content"
-                        value="{{ $user->content }}" id="content">
+                    <input required type="text" class="form-control" name="content" value="{{ $user->content }}"
+                        id="content">
                 </div>
 
                 <div class="form-group">
