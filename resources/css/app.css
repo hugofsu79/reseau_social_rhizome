@@ -1,5 +1,127 @@
+/* typographie
+
+bd supper sans serif bold 
+h1
+
+et regular
+h2 p h3
+
+elza-text
+p
+
+couleurs
+
+#A3B291 vert clair
+#9799CA violet
+#142207 vert/marron foncé
+
+*/
+
+body {
+    background-color: #FBFFDC;
+}
+
+/* • Navbar • */
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    background-color: #A3B291;
+}
+
+.recherche {
+    margin: 1em;
+    border-style: none;
+}
+
+
 h1 {
     font-family: "bd-supper", sans-serif;
+    color: #142207;
     font-weight: 400;
-    font-style: normal;
+}
+
+.amazonie {
+    font-family: "bd-supper", sans-serif;
+    font-size: 10em;
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+h2,
+h3,
+label {
+    font-family: "bd-supper", sans-serif;
+    color: #A3B291;
+}
+
+p {
+    font-family: "elza-text", sans-serif;
+    color: #142207;
+}
+
+.publication_home {
+    background-color: #142207;
+    border-radius: 40px;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-style: none;
+}
+
+
+.parcourir {
+    background-color: #A3B291;
+    border-style: none;
+}
+
+.tags {
+    background-color: #A3B291;
+    border-style: none;
+}
+
+.partager {
+    background-color: #9799CA;
+    padding-left: 4em;
+    padding-right: 4em;
+    margin-bottom: 2em;
+    border-style: none;
+}
+
+.message_publication {
+    background-color: #A3B291;
+    margin-bottom: 2em;
+}
+
+/* • message feed • */
+
+.avatar {
+    height: 2em;
+    width: 2em;
+    margin-left: 0.5em;
+}
+
+.all_avatar {
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+}
+
+.image_publie {
+    border-radius: 2em;
+}
+
+
+.message_publie {
+    margin-bottom: 2em;
+}
+
+.message_publie .card {
+    font-family: "elza-text", sans-serif;
+    font-weight: 300;
+    padding: 2em;
+    margin-top: 2em;
+    background-color: #A3B291;
+    border-style: none;
+
 }

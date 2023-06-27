@@ -34,16 +34,18 @@ class PostController extends Controller
 
         //3) On redirige vers l'accueil avec un message de succès
         return redirect()->route('home')->with('message', 'Message créé avec succès');
-        
     }
 
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+
+    public function edit(Post $post)
     {
-        //
+        // Je renvoie une vue en y injectant le message
+        $this->authorize('update', $post);
+        return view('posts/edit', ['post' => $post]);
     }
 
     /**
@@ -51,14 +53,19 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    // public function destroy(User $comment)
+    // {
+    //     if (Auth::user()->id == $comment->comments) {
+    //         $comment->delete();
+    //         return redirect()->route('index')->with('message', 'Le commentaire a bien été supprimé');
+    //     } else {
+    //         return index()->with('message', 'le compte a bien été modifié');
+    //     }
+    // }
 }

@@ -7,23 +7,23 @@
 @section('content')
     <main class="container">
 
-        <h1>Modifier mes informations</h1>
+        <h1>Mon compte</h1>
 
+        <h3 class="pb-3">Modifier mon poste</h3>
         <div class="row">
 
-            <form class="col-4 mx-auto" action="{{ route('users.update', $user) }}" method="POST" enctype="multipart/form-data">
+            <form class="col-4 mx-auto" action="{{ route('users.update', $user) }}" method="POST">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
-                    <label for="pseudo">Nouveau message</label>
-                    <input required type="text" class="form-control" name="content"
-                        value="{{ $user->content }}" id="content">
+                    <label for="pseudo">Nouveau texte</label>
+                    <input required type="text" class="form-control" placeholder="modifier" name="comment"
+                        value="{{ $user->comment }}" id="comment">
                 </div>
 
                 <div class="form-group">
-                    {{-- uploade image --}}
-                    <label for="pseudo">Uploade ton image ici</label>
+                    <label for="pseudo">Nouveau image</label>
                     <input required type="text" class="form-control" placeholder="modifier" name="image"
                         value="{{ $user->image }}" id="image">
                 </div>
@@ -33,6 +33,7 @@
             <form action="{{ route('users.destroy', $user) }}" method="post">
                 @csrf
                 @method('delete')
+                <button type="submit" class="btn btn-danger">supprimer le compte</button>
             </form>
         </div>
     </main>

@@ -88,7 +88,7 @@ class HomeController extends Controller
         return view('home', ['posts' =>$posts]);
 
         //Autre syntaxe
-        //return view('home', compact('posts'));<
+        //return view('home', compact('posts'));
     }
 
 }

@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+|Voici où vous pouvez enregistrer les routes web de votre application. Ces
+|routes sont chargées par le RouteServiceProvider et toutes seront
+|assignées au groupe de middleware "web". Faites quelque chose de génial !
 |
 */
 //******************************* page de connexion/Inscription ***************/
@@ -25,7 +25,7 @@ Auth::routes();
 
 //******************************* ROUTE resource USER ***************/
 
-Route::resource('/users', App\Http\Controllers\UserController::class)->except('index', 'creat','show');
+Route::resource('/users', App\Http\Controllers\UserController::class)->except('index', 'creat', 'show');
 
 
 //******************************* Ajoute message qui ce dirige à message.store ***************/
@@ -37,3 +37,8 @@ Route::resource('/users', App\Http\Controllers\UserController::class)->except('i
 Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index', 'create', 'show');
 
 
+// route::delete()
+
+//******************************* Route  resource comment ***************/
+
+Route::resource('/comments', App\Http\Controllers\CommentController::class)->except('index');

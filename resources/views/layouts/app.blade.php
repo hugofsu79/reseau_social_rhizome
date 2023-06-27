@@ -19,17 +19,21 @@
 
     <!-- Typographie -->
     <link rel="stylesheet" href="https://use.typekit.net/lvh6izs.css">
+    <link rel="stylesheet" href="https://use.typekit.net/lvh6izs.css">
 
-    
+    <!-- Icone -->
+    {{-- <script src="https://example.com/fontawesome/v5.15.4/js/all.js" data-auto-a11y="true" ></script> --}}
+
+
 </head>
 
-<body>
+<nav>
     <header>
         <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <nav class="navbar navbar-expand-md navbar-light shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src= {{ asset('images/' . $post->user->visual) }} alt="logo_rhizome">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -60,8 +64,9 @@
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" v-pre>
                                         {{ Auth::user()->pseudo }}
                                     </a>
 
@@ -71,7 +76,7 @@
 
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
+                                                document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
@@ -83,6 +88,11 @@
                                 </li>
                             @endguest
                         </ul>
+                        <form action="recherche.php" method="GET">
+                            <input class="recherche rounded-pill p-2" type="text" name="query"
+                                placeholder="Recherche">
+                            <button type="submit">Rechercher</button>
+                        </form>
                     </div>
                 </div>
             </nav>
@@ -112,6 +122,6 @@
 
     </main>
     </div>
-</body>
+</nav>
 
 </html>
