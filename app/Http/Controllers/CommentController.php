@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -39,4 +40,26 @@ class CommentController extends Controller
     {
         //
     }
+
+    // public function getImage(Post $post)
+    // {
+    //     $path = storage_path('app/public/images/plnts' . $post->image_path);
+
+    //     if (file_exists($path)) {
+    //         return response()->file($path);
+    //     }
+
+
+    //     // Si l'image n'existe pas, une image par défaut ou une réponse d'erreur
+    //     $defaultImagePath = storage_path('app/public/default_image.jpg');
+
+    //     if (file_exists($defaultImagePath)) {
+    //         return response()->file($defaultImagePath);
+    //     }
+
+    //     // Ou retourner une réponse d'erreur avec un message approprié
+    //     return response()->json(['error' => 'Image not found'], 404);
+    // }
 }
+
+//commentaire, 

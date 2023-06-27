@@ -125,3 +125,17 @@ p {
     border-style: none;
 
 }
+
+.boutons_publications {
+    padding: 1em;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.style_button {
+    background-color: #9799CA;
+    margin-bottom: 2em;
+    border-style: none;
+}

@@ -69,13 +69,17 @@
         </div>
     </section>
 
+
+
     <!-- ** boucle qui affiche les messages **-->
+
+
 
     <section class="text-center">
 
         @foreach ($posts as $post)
-            <div class="message_publication card container">
-                <div class="all_avatar">
+            <div class="message_publication card container w-100">
+                <div class="all_avatar pt-3">
                     <p>Posté par {{ $post->user->pseudo }}</p>
 
                     <img class="avatar rounded-circle" src="{{ asset('images/' . $post->user->image) }}" alt="imagePost">
@@ -84,7 +88,7 @@
 
                 <!-- * Image post *-->
 
-                <img class="image_publie w-50" src="{{ asset('images/' . $post->image) }}" alt="plantes">
+                <img class="image_publie w-100" src="{{ asset('images/' . $post->image) }}" alt="plantes">
 
                 <!-- * Date du post *-->
 
@@ -99,14 +103,13 @@
 
                 <div class="card-body">
                     <p>{{ $post->content }}</p>
-                    <h5 class="card-title"></h5>
-                    <div class="col-md-8">
+                    <div class="boutons_publications m-auto">
 
 
                         <!-- ** Bouton Commentaire **-->
 
 
-                        <button class="btn btn-info"
+                        <button class="style_button btn btn-primary  rounded-pill m-1"
                             onclick="document.getElementById('formulairecommentaire{{ $post->id }}').style.display = 'block'">
                             Commenter
                         </button>
@@ -116,7 +119,7 @@
 
                         {{-- @can('update', $post) --}}
                         <a href="{{ route('posts.edit', $post) }}">
-                            <button class="btn btn-danger">modifier</button>
+                            <button class="style_button btn btn-primary  rounded-pill m-1">modifier</button>
                         </a>
                         {{-- @endcan --}}
 
@@ -126,28 +129,40 @@
 
                         <form action="{{ route('posts.destroy', $post) }}" method="post">
                             @method ("delete") @csrf
-                            <button type="submit" class="btn btn-danger">supprimer</button>
+                            <button type="submit"
+                                class="style_button btn btn-primary  rounded-pill  m-1">Supprimer</button>
                         </form>
                         {{-- @endcan --}}
                     </div>
                 </div>
 
-                @foreach ($post->comments as $comment)
-                    <div class="w-50 mx-auto card text-white">
-                        {{-- @can('update', $comment)
-                    @endcan --}}
 
-                        <img class="card-img-top w-25" src="{{ asset('images/' . $comment->image) }} "
-                            alt="image_commentaire">
+
+                @foreach ($post->comments as $comment)
+                    <div class="commentaire_user card w-50 mx-auto mb-2">
+                        {{-- @can('update', $comment)
+                    @endcan  --}}
+
+                        <div class="all_avatar m-2">
+                            <p>Posté par {{ $comment->user->pseudo }}</p>
+                            <img class="avatar rounded-circle" src="{{ asset('images/' . $comment->user->image) }}"
+                                alt="imagePost">
+                        </div>
 
                         <div class="card-body">
+                            <img class="image_publie w-100" src="{{ asset('images/' . $comment->image) }}" alt="plantes">
                             <p class="card-text">{{ $comment->content }}</p>
                             <p class="card-text">{{ $comment->tags }}</p>
                         </div>
                     </div>
                 @endforeach
+
+
             </div>
         @endforeach
 
+        {{ $posts->links() }}
+
     </section>
 @endsection
+

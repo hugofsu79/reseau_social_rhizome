@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Models\Publication;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +44,7 @@ Route::resource('/posts', App\Http\Controllers\PostController::class)->except('i
 //******************************* Route  resource comment ***************/
 
 Route::resource('/comments', App\Http\Controllers\CommentController::class)->except('index');
+
+
+//******************************* Route  resource img ***************/
+// Route::get('/publication/{id}', 'PublicationController@show')->name('publication.show');
