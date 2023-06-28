@@ -63,8 +63,10 @@
                             @enderror
                         </div>
                     </div>
+
                     <button type="submit" class="partager btn btn-primary  rounded-pill">Partager</button>
                 </form>
+
             </div>
         </div>
     </section>
@@ -109,7 +111,6 @@
 
                         <!-- ** Bouton Commentaire **-->
 
-
                         <button class="style_button btn btn-primary  rounded-pill m-1"
                             onclick="document.getElementById('formulairecommentaire{{ $post->id }}').style.display = 'block'">
                             Commenter
@@ -138,63 +139,135 @@
                 </div>
 
 
+                <!------------------------ Formulaire de création de commentaire ------------------------>
+                <div class="container w-50">
+
+                    <form style="display:none" method="POST" action="{{ route('comments.store') }}"
+                        id="formulairecommentaire{{ $post->id }}">
+
+                        @csrf
+
+                        <!-- //***************** Input hidden : id du post ************************\\ -->
+
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+
+                        <!-- //********************** Input content ****************************\\ -->
+
+                        <div class="row mb-3">
+
+                            <i class="fas fa-pen-fancy text-primary fa-2x me-2"></i>
+
+                            <label for="content" class="text-white">texte</label>
+
+                            <textarea required class="rounded-3 pb-5 mt-2" type="text" name="content" id="content"
+                                placeholder="Ajouter un commentaire"></textarea>
+
+                            @error('content')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+
+
+                        <!-- //********************** Input tags ****************************\\ -->
+
+                        <div class="row mb-4 justify-content-end">
+
+                            <label for="tags" class="text-white">tags</label>
+
+                            <input id="tags" type="text"
+                                class="tags rounded-pill form-control @error('tags') is-invalid @enderror" name="tags"
+                                placeholder="#calamondin #agrume #citron" required autofocus>
+
+                            @error('tags')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+
+
+                        <!-- //********************** Input image ****************************\\ -->
+
+                        <div class="row mb-3 justify-content-end">
+
+                            <label for="image" class="text-white">image</label>
+
+                            <div class="col-md-5">
+                                <input id="image" type="text"
+                                    class="parcourir rounded-pill form-control @error('image') is-invalid @enderror"
+                                    name="image" placeholder="image.jpg" autocomplete="image">
+
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <button type="submit" class="partager btn btn-primary  rounded-pill">Partager</button>
+
+                    </form>
+
+                    <!---------------------------------- masquer le formulaire ----------------------------->
+
+                    <button class="btn mx-auto"
+                        onclick="document.getElementById('formulairecommentaire{{ $post->id }}').style.display = 'none'">
+                        Annuler
+                    </button>
+
+                </div>
+
+
+                <!---------------------------------- afficher les commentaires ----------------------------->
 
                 @foreach ($post->comments as $comment)
-                <div class="commentaire_user card w-50 mx-auto mb-2">
-                    {{-- @can('update', $comment)
+                    <div class="commentaire_user card w-50 mx-auto mb-2">
+                        {{-- @can('update', $comment)
                     @endcan --}}
-                    
-                    <div class="all_avatar m-2">
-                        <p>Posté par {{ $comment->user->pseudo }}</p>
-                        <img class="avatar rounded-circle" src="{{ asset('images/' . $comment->user->image) }}" alt="imagePost">
+
+                        <div class="all_avatar m-2">
+                            <p>Posté par {{ $comment->user->pseudo }}</p>
+                            <img class="avatar rounded-circle" src="{{ asset('images/' . $comment->user->image) }}"
+                                alt="imagePost">
+                        </div>
+
+                        <div class="card-body">
+                            <img class="image_publie w-100" src="{{ asset('images/' . $comment->image) }}"
+                                alt="plantes">
+                            <p class="card-text">{{ $comment->content }}</p>
+                            <p class="card-text">{{ $comment->tags }}</p>
+
+
+                            <!--------------------------- options : modifier et supprimer ---------------------->
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <a href="{{ route('comments.edit', $comment) }}">
+                                        <button class="style_button btn btn-primary rounded-pill m-1">modifier</button>
+                                    </a>
+                                </div>
+
+                                <div class="col">
+                                    <form action="{{ route('comments.destroy', $comment) }}" method="post">
+                                        @method ("delete")
+                                        @csrf
+                                        <button type="submit"
+                                            class="style_button btn btn-primary  rounded-pill  m-1">Supprimer</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
-                    
-                    <div class="card-body">
-                        <img class="image_publie w-100" src="{{ asset('images/' . $comment->image) }}" alt="plantes">
-                        <p class="card-text">{{ $comment->content }}</p>
-                        <p class="card-text">{{ $comment->tags }}</p>
-                    </div>
-            
-                    <!-- Formulaire de création de réponse au commentaire -->
-                    <form method="POST" action="{{ route('comment.replies.store', $comment->id) }}">
-                        @csrf
-                        <input type="hidden" name="post_id" value="{{ $post->id }}">
-                        <textarea name="content" placeholder="Répondre au commentaire"></textarea>
-                        <button type="submit">Répondre</button>
-                    </form>
-            
-                    <!-- Liste des réponses au commentaire -->
-
-                        @if ($comment->replies)
-                        <ul class="replies-list">
-                            @foreach ($comment->replies as $reply)
-                                <li>{{ $reply->content }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-                        
-                    </ul>
-                </div>
-            @endforeach
-{{--             
-                <!-- Section des commentaires -->
-
-                    <!-- Formulaire de création de commentaire -->
-                    <form method="POST" action="{{ route('comments.store') }}">
-                        @csrf
-                        <input type="hidden" name="post_id" value="{{ $post->id }}">
-                        <textarea name="content" placeholder="Ajouter un commentaire"></textarea>
-                        <button type="submit">Publier</button>
-                    </form>
-
-                    <!-- Liste des commentaires -->
-                    <ul class="comment-list">
-                        @foreach ($post->comments as $comment)
-                            <li>{{ $comment->content }}</li>
-                        @endforeach
-                    </ul>
-                </div> --}}
-
+                @endforeach
 
             </div>
         @endforeach
