@@ -249,7 +249,7 @@
                             <div class="row">
 
                                 <div class="col">
-                                    <a href="{{ route('comments.edit', $comment) }}">
+                                    <a href="{{ route('layouts.edit', $comment) }}">
                                         <button class="style_button btn btn-primary rounded-pill m-1">modifier</button>
                                     </a>
                                 </div>

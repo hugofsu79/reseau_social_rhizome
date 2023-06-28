@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentReplyController;
+use App\Http\Controllers\LayoutController;
 // use App\Models\Publication;
 
 
@@ -54,3 +55,8 @@ Route::resource('/comments', App\Http\Controllers\CommentController::class)->exc
 // routes/web.php ou routes/api.php
 
 Route::post('/comments/{comment}/replies', [CommentReplyController::class, 'store'])->name('comment.replies.store');
+
+
+// route comment
+
+Route::get('/layouts/{comment}/edit', [LayoutController::class, 'edit'])->name('layouts.edit');

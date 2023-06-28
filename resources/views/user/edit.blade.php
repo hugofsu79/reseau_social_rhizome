@@ -46,8 +46,6 @@
                 {{-- @if (Route::currentRouteName) == 'search'
                     <h1 class="m-5">Résultats de laa recherche</h1>
                 @else --}}
-                <h1 class="amazonie">L'Amazonie</h1>
-
 
                 <!-- //********************** Formulaire ajout message ****************************\\ -->
 
