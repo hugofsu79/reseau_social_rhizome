@@ -33,7 +33,8 @@
             <nav class="navbar navbar-expand-md navbar-light shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src= {{ asset('images/' . $post->user->visual) }} alt="logo_rhizome">
+                        <img class="w-25" src="{{ asset('./visual/logo_rhizome.png') }}" alt="logo_rhizome">
+                        
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

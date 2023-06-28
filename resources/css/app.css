@@ -19,6 +19,9 @@ couleurs
 
 body {
     background-color: #FBFFDC;
+    background-image: url(../css/visuel_rhizome.png);
+    background-repeat: repeat;
+    scrollbar-width: auto;
 }
 
 /* • Navbar • */
@@ -49,6 +52,27 @@ h1 {
     text-align: center;
 }
 
+.logo_index {
+    margin-top: 2em;
+}
+
+/* • connexion • */
+
+
+.connexion {
+    border-style: none;
+    background-color: #A3B291;
+
+}
+
+.connexion_title {
+    font-size: 12em;
+}
+
+.baseline {
+    margin-top: 15em;
+}
+
 h2,
 h3,
 label {
@@ -59,6 +83,11 @@ label {
 p {
     font-family: "elza-text", sans-serif;
     color: #142207;
+}
+.commentaire_publication{
+    background-color: #ebf3e2;
+    border-radius: 1em;
+    padding: 2em;
 }
 
 .publication_home {
@@ -109,6 +138,7 @@ p {
 
 .image_publie {
     border-radius: 2em;
+
 }
 
 

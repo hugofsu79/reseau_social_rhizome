@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentReplyController;
 // use App\Models\Publication;
 
 
@@ -48,3 +49,8 @@ Route::resource('/comments', App\Http\Controllers\CommentController::class)->exc
 
 //******************************* Route  resource img ***************/
 // Route::get('/publication/{id}', 'PublicationController@show')->name('publication.show');
+
+
+// routes/web.php ou routes/api.php
+
+Route::post('/comments/{comment}/replies', [CommentReplyController::class, 'store'])->name('comment.replies.store');

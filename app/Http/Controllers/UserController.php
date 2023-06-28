@@ -10,13 +10,18 @@ use Symfony\Component\Mime\Message;
 class UserController extends Controller
 {
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+
+    //*********** show message *********/
+    public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('user.show', compact('user'));
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -67,12 +72,4 @@ class UserController extends Controller
             return redirect()->back()->withErrors(['erreur' => 'suppression du compte impossible']);
         }
     }
-
-
-    //***********  *********/
-
-    
-
-
-    
 }

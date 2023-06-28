@@ -87,8 +87,9 @@
                 </div>
 
                 <!-- * Image post *-->
-
-                <img class="image_publie w-100" src="{{ asset('images/' . $post->image) }}" alt="plantes">
+                <div class="col">
+                    <img class="image_publie w-75" src="{{ asset('images/' . $post->image) }}" alt="plantes">
+                </div>
 
                 <!-- * Date du post *-->
 
@@ -102,7 +103,7 @@
                 <!-- * text post *-->
 
                 <div class="card-body">
-                    <p>{{ $post->content }}</p>
+                    <p class="commentaire_publication">{{ $post->content }}</p>
                     <div class="boutons_publications m-auto">
 
 
@@ -139,23 +140,60 @@
 
 
                 @foreach ($post->comments as $comment)
-                    <div class="commentaire_user card w-50 mx-auto mb-2">
-                        {{-- @can('update', $comment)
-                    @endcan  --}}
-
-                        <div class="all_avatar m-2">
-                            <p>Posté par {{ $comment->user->pseudo }}</p>
-                            <img class="avatar rounded-circle" src="{{ asset('images/' . $comment->user->image) }}"
-                                alt="imagePost">
-                        </div>
-
-                        <div class="card-body">
-                            <img class="image_publie w-100" src="{{ asset('images/' . $comment->image) }}" alt="plantes">
-                            <p class="card-text">{{ $comment->content }}</p>
-                            <p class="card-text">{{ $comment->tags }}</p>
-                        </div>
+                <div class="commentaire_user card w-50 mx-auto mb-2">
+                    {{-- @can('update', $comment)
+                    @endcan --}}
+                    
+                    <div class="all_avatar m-2">
+                        <p>Posté par {{ $comment->user->pseudo }}</p>
+                        <img class="avatar rounded-circle" src="{{ asset('images/' . $comment->user->image) }}" alt="imagePost">
                     </div>
-                @endforeach
+                    
+                    <div class="card-body">
+                        <img class="image_publie w-100" src="{{ asset('images/' . $comment->image) }}" alt="plantes">
+                        <p class="card-text">{{ $comment->content }}</p>
+                        <p class="card-text">{{ $comment->tags }}</p>
+                    </div>
+            
+                    <!-- Formulaire de création de réponse au commentaire -->
+                    <form method="POST" action="{{ route('comment.replies.store', $comment->id) }}">
+                        @csrf
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <textarea name="content" placeholder="Répondre au commentaire"></textarea>
+                        <button type="submit">Répondre</button>
+                    </form>
+            
+                    <!-- Liste des réponses au commentaire -->
+
+                        @if ($comment->replies)
+                        <ul class="replies-list">
+                            @foreach ($comment->replies as $reply)
+                                <li>{{ $reply->content }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                        
+                    </ul>
+                </div>
+            @endforeach
+{{--             
+                <!-- Section des commentaires -->
+
+                    <!-- Formulaire de création de commentaire -->
+                    <form method="POST" action="{{ route('comments.store') }}">
+                        @csrf
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <textarea name="content" placeholder="Ajouter un commentaire"></textarea>
+                        <button type="submit">Publier</button>
+                    </form>
+
+                    <!-- Liste des commentaires -->
+                    <ul class="comment-list">
+                        @foreach ($post->comments as $comment)
+                            <li>{{ $comment->content }}</li>
+                        @endforeach
+                    </ul>
+                </div> --}}
 
 
             </div>
@@ -165,4 +203,3 @@
 
     </section>
 @endsection
-
