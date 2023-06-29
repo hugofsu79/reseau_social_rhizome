@@ -51,8 +51,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'pseudo' => ['required', 'string', 'max:40'],
-            'image' => ['required', 'string', 'max:40'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'image' => 'nullable|image|mimes:jpeg,png,gif,svg|max:2048',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
 
         ]);
@@ -68,8 +68,8 @@ class RegisterController extends Controller
     {
         return User::create([
             'pseudo' => $data['pseudo'],
-            'image' => $data['image'],
             'email' => $data['email'],
+            'image' => isset($data['image']) ? UploadImage($data['image']) : "default_user.jpg",
             'password' => Hash::make($data['password']),
         ]);
     }

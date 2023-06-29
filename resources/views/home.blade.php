@@ -48,23 +48,26 @@
                     <!-- ** input image **-->
 
                     <div class="row mb-3 justify-content-end">
-                        <label for="image"
-                            class="col col-form-label text-md-end">{{ __('Uploade ton image ici (max 2 Mo)') }}</label>
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                            @csrf
 
-                        <div class="col-md-5">
-                            <input id="image" type="text"
-                                class="parcourir rounded-pill form-control @error('image') is-invalid @enderror"
-                                name="image" placeholder="Parcourir..." autocomplete="image" autofocus>
 
-                            @error('image')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                            <div class="form-group row">
+                                <label for="image"
+                                    class="col col-form-label text-md-end">{{ __('Uploade ton image ici (max 2 Mo)') }}</label>
+                                <div class="col-md-6">
+                                    <input type="fil" name="image" class="form-control">
+
+                                    @error('image')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="partager btn btn-primary  rounded-pill mt-4">Partager</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <button type="submit" class="partager btn btn-primary  rounded-pill">Partager</button>
                 </form>
 
             </div>
@@ -83,7 +86,11 @@
             @foreach ($posts as $post)
                 <div class="message_publication card container w-30">
                     <div class="all_avatar pt-3">
-                        <p>Posté par {{ $post->user->pseudo }}</p>
+                        <p>Posté par <a href="{{ route('users.show', $post->user) }}">
+                                <!--afficher un lien vers le profil du user -->
+                                <strong>{{ $post->user->pseudo }}</strong>
+                            </a>
+                        </p>
 
                         <img class="avatar rounded-circle" src="{{ asset('images/' . $post->user->image) }}"
                             alt="imagePost">

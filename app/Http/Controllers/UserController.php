@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -12,12 +13,11 @@ class UserController extends Controller
 
 
 
-    //*********** show message *********/
-    public function show($id)
+    //*********** show: afficher le profil public (type facebook) *********/
+    public function show(User $user)
     {
-        $user = User::find($id);
-
-        return view('user.show', compact('user'));
+        $user->load('posts'); // Je charge les posts du user
+        return view('user.profil', compact('user'));// Je renvoie la vue sur le profil
     }
 
 

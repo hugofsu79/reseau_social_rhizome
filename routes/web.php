@@ -31,7 +31,7 @@ Auth::routes();
 
 //******************************* ROUTE resource USER ***************/
 
-Route::resource('/users', App\Http\Controllers\UserController::class)->except('index', 'creat', 'show');
+Route::resource('/users', App\Http\Controllers\UserController::class)->except('index', 'create');
 
 
 //******************************* Ajoute message qui ce dirige à message.store ***************/
