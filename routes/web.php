@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentReplyController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PostController;
+
 // use App\Models\Publication;
 
 
@@ -45,7 +47,7 @@ Route::resource('/posts', App\Http\Controllers\PostController::class)->except('i
 
 //******************************* Route  resource comment ***************/
 
-Route::resource('/comments', App\Http\Controllers\CommentController::class)->except('index');
+Route::resource('/comments', App\Http\Controllers\CommentController::class)->except('index', 'create', 'show');
 
 
 // routes/web.php ou routes/api.php
@@ -55,9 +57,14 @@ Route::post('/comments/{comment}/replies', [CommentReplyController::class, 'stor
 
 // route comment
 
-Route::get('/layouts/{comment}/edit', [CommentReplyController::class, 'edit'])->name('layouts.edit');
 
 
+        //≠≠≠≠≠≠≠≠ Policies ≠≠≠≠≠≠≠≠≠≠≠≠ //
+
+    // Route::resource('posts', 'PostController', ['except' => ['edit']]);
+    Route::get('/posts/{post}/edit', 'PostController@edit')->middleware('can:update-post,post');
+                    //\__________________________________lien entre les deux____/\//
 //******************************* Route Search ***************/
 
-// Route::get('/messages/search', 'App\Http\Controllers\MessageController')->name('messages.search');
+
+Route::get('/search', [App\Http\Controllers\PostController::class, 'search'])->name('search');

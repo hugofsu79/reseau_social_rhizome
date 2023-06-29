@@ -86,8 +86,8 @@
                             </li>
                         @endguest
                     </ul>
-                    <form action="recherche.php" method="GET">
-                        <input class="recherche rounded-pill p-2" type="text" name="query" placeholder="Recherche">
+                    <form action="{{ route ('search') }}" method="GET">@csrf
+                        <input required class="recherche rounded-pill p-2" type="text" name="search" placeholder="Recherche">
                         <button type="submit">Rechercher</button>
                     </form>
                 </div>

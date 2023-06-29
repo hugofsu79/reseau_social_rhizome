@@ -40,17 +40,31 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Comment $comment)
     {
-        //
+        // Je renvoie une vue en y injectant le message
+        // $this->authorize('update', $post);
+        return view('comments/edit', ['comment' => $comment]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        $request->validate([
+            //'name de l'input-> [critères]
+            'content' => 'required|min:25|max:1000',
+            'image' => 'nullable|string',
+            'tags' => 'required|min:3|max:50'
+            // Autre syntaxe possible : 'content' => ['required', 'min:25', 'max:1000']
+        ]);
+
+        //2) Sauvegarde du message => Va lancer un insert into en SQL
+        $comment->update($request->all());
+
+        //3) On redirige vers l'accueil avec un message de succès
+        return redirect()->route('home')->with('message', 'Commentaire modifié avec succès');
     }
 
     /**

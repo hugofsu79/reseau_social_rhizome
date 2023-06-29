@@ -12,26 +12,26 @@
         
         <div class="row">
 
-            <form class="col-4 mx-auto" action="{{ route('comment.update', $post) }}" method="POST">
+            <form class="col-4 mx-auto" action="{{ route('comments.update', $comment) }}" method="POST">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
                     <label for="content">Nouveau texte</label>
                     <input required type="text" class="form-control" placeholder="modifier" name="content"
-                        value="{{ $post->content }}" id="content">
+                        value="{{ $comment->content }}" id="content">
                 </div>
 
                 <div class="form-group">
                     <label for="image">nouvelle image</label>
                     <input required type="text" class="form-control" placeholder="modifier" name="image"
-                        value="{{ $post->image }}" id="image">
+                        value="{{ $comment->image }}" id="image">
                 </div>
 
                 <div class="form-group">
                     <label for="tags">Tags</label>
                     <input required type="text" class="form-control" placeholder="#calamondin" name="tags"
-                        value="{{ $post->tags }}" id="tags">
+                        value="{{ $comment->tags }}" id="tags">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Valider</button>

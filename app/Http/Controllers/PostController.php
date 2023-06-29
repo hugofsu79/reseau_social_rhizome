@@ -5,10 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+
+    public function index()
+    {
+        // dd(Gate::allows('update-post'));
+        $posts = Post::with('category')->paginate(10);
+        return view('admin_post.index', ['posts' => $posts]);
+    }
+
 
 
     /**
@@ -55,6 +64,10 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {                                      //$request['content'] = "Salut les gars"
         //1) On valide les champs en précisant les critères attendus
+
+        $post->user_id = 300;
+        $this->authorize('update-post', $post);
+
         $request->validate([
             //'name de l'input-> [critères]
             'content' => 'required|min:25|max:1000',
@@ -78,5 +91,22 @@ class PostController extends Controller
         // $this->Authorize('delete', $post);
         $post->delete();
         return redirect()->route('home')->with('message', 'Message supprimé avec succès');;
+    }
+
+    public function search(Request $request)
+    {
+
+        // valider en fonction du nombre de caractere si il y a un 
+        $request->validate([
+            //'name de l'input-> [critères]
+            'search' => 'required|min:3|max:32'
+        ]);
+
+        $search = $request->search; // Avant la recerche, stock dans une variable
+        $posts = Post::where('content', 'like', "%{$search}%") //tri contenue comportant les caractères écrit dans la barre de recerche
+            ->orWhere('tags', 'like', "%{$search}%")
+            ->paginate(10);
+
+        return view('home', ['posts' => $posts]);
     }
 }
