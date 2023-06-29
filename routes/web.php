@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentReplyController;
-use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\MessageController;
 // use App\Models\Publication;
 
 
@@ -48,10 +48,6 @@ Route::resource('/posts', App\Http\Controllers\PostController::class)->except('i
 Route::resource('/comments', App\Http\Controllers\CommentController::class)->except('index');
 
 
-//******************************* Route  resource img ***************/
-// Route::get('/publication/{id}', 'PublicationController@show')->name('publication.show');
-
-
 // routes/web.php ou routes/api.php
 
 Route::post('/comments/{comment}/replies', [CommentReplyController::class, 'store'])->name('comment.replies.store');
@@ -59,4 +55,9 @@ Route::post('/comments/{comment}/replies', [CommentReplyController::class, 'stor
 
 // route comment
 
-Route::get('/layouts/{comment}/edit', [LayoutController::class, 'edit'])->name('layouts.edit');
+Route::get('/layouts/{comment}/edit', [CommentReplyController::class, 'edit'])->name('layouts.edit');
+
+
+//******************************* Route Search ***************/
+
+// Route::get('/messages/search', 'App\Http\Controllers\MessageController')->name('messages.search');

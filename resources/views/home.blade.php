@@ -80,61 +80,65 @@
     <section class="text-center">
 
         @foreach ($posts as $post)
-            <div class="message_publication card container w-100">
-                <div class="all_avatar pt-3">
-                    <p>Posté par {{ $post->user->pseudo }}</p>
+            <div class="message_publication card container w-30">
+                <div class="row">
+                    <div class="all_avatar pt-3">
+                        <p>Posté par {{ $post->user->pseudo }}</p>
 
-                    <img class="avatar rounded-circle" src="{{ asset('images/' . $post->user->image) }}" alt="imagePost">
+                        <img class="avatar rounded-circle" src="{{ asset('images/' . $post->user->image) }}"
+                            alt="imagePost">
 
-                </div>
+                    </div>
 
-                <!-- * Image post *-->
-                <div class="col">
-                    <img class="image_publie w-75" src="{{ asset('images/' . $post->image) }}" alt="plantes">
-                </div>
+                    <!-- * Image post *-->
+                    <div class="col">
+                        <img class="image_publie w-45" src="{{ asset('images/' . $post->image) }}" alt="plantes">
+                    </div>
 
-                <!-- * Date du post *-->
+                    <!-- * Date du post *-->
 
-                <p class="p-2">{{ $post->tags }}
-                    Posté {{ $post->created_at }}</p>
+                    <p class="p-2">{{ $post->tags }}
+                        Posté {{ $post->created_at }}</p>
 
-                @if ($post->created_at != $post->updated_at)
-                @endif
-
-
-                <!-- * text post *-->
-
-                <div class="card-body">
-                    <p class="commentaire_publication">{{ $post->content }}</p>
-                    <div class="boutons_publications m-auto">
+                    @if ($post->created_at != $post->updated_at)
+                    @endif
 
 
-                        <!-- ** Bouton Commentaire **-->
 
-                        <button class="style_button btn btn-primary  rounded-pill m-1"
-                            onclick="document.getElementById('formulairecommentaire{{ $post->id }}').style.display = 'block'">
-                            Commenter
-                        </button>
+                    <!-- * text post *-->
 
-
-                        <!-- ** Bouton modifier=> mène à la page modification **-->
-
-                        {{-- @can('update', $post) --}}
-                        <a href="{{ route('posts.edit', $post) }}">
-                            <button class="style_button btn btn-primary  rounded-pill m-1">modifier</button>
-                        </a>
-                        {{-- @endcan --}}
+                    <div class="card-body w-25">
+                        <p class="commentaire_publication">{{ $post->content }}</p>
+                        <div class="boutons_publications m-auto">
 
 
-                        <!-- ** Bouton supprimer  post -> edit -> (comme le user)**-->
-                        {{-- @can('delete', $post) --}}
+                            <!-- ** Bouton Commentaire **-->
 
-                        <form action="{{ route('posts.destroy', $post) }}" method="post">
-                            @method ("delete") @csrf
-                            <button type="submit"
-                                class="style_button btn btn-primary  rounded-pill  m-1">Supprimer</button>
-                        </form>
-                        {{-- @endcan --}}
+                            <button class="style_button btn btn-primary  rounded-pill m-1"
+                                onclick="document.getElementById('formulairecommentaire{{ $post->id }}').style.display = 'block'">
+                                Commenter
+                            </button>
+
+
+                            <!-- ** Bouton modifier=> mène à la page modification **-->
+
+                            {{-- @can('update', $post) --}}
+                            <a href="{{ route('posts.edit', $post) }}">
+                                <button class="style_button btn btn-primary  rounded-pill m-1">modifier</button>
+                            </a>
+                            {{-- @endcan --}}
+
+
+                            <!-- ** Bouton supprimer  post -> edit -> (comme le user)**-->
+                            {{-- @can('delete', $post) --}}
+
+                            <form action="{{ route('posts.destroy', $post) }}" method="post">
+                                @method ("delete") @csrf
+                                <button type="submit"
+                                    class="style_button btn btn-primary  rounded-pill  m-1">Supprimer</button>
+                            </form>
+                            {{-- @endcan --}}
+                        </div>
                     </div>
                 </div>
 

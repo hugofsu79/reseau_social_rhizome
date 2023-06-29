@@ -24,19 +24,6 @@ body {
     scrollbar-width: auto;
 }
 
-/* • Navbar • */
-
-.navbar {
-    width: 100%;
-    background-color: #A3B291;
-}
-
-.recherche {
-    margin: 1em;
-    border-style: none;
-}
-
-
 h1 {
     font-family: "bd-supper", sans-serif;
     color: #142207;
@@ -79,11 +66,39 @@ label {
     color: #A3B291;
 }
 
-p {
+p,
+a {
     font-family: "elza-text", sans-serif;
     color: #142207;
+    text-decoration: none;
 }
-.commentaire_publication{
+
+
+/* • Navbar • */
+
+.navbar {
+    width: 100%;
+    background-color: #A3B291;
+}
+
+.nav-item {
+    background-color: #A3B291;
+}
+
+.recherche {
+    margin: 1em;
+    border-style: none;
+}
+
+.collapse_co_deco {
+    background-color: #ebf3e2;
+    border-style: none;
+    box-shadow: 0px 5px 5px #4e584279;
+}
+
+
+
+.commentaire_publication {
     background-color: #ebf3e2;
     border-radius: 1em;
     padding: 2em;
@@ -167,4 +182,26 @@ p {
     background-color: #9799CA;
     margin-bottom: 2em;
     border-style: none;
+}
+
+
+/* • formulaire Modifier mon poste • */
+
+.formulaire {
+    background-color: #A3B291;
+    border-radius: 2em;
+}
+
+/* • footer • */
+
+footer {
+    background-size: contain;
+    padding: 4em;
+    background-image: url(../css/footer.png);
+    /* object-fit: cover; */
+}
+
+footer p {
+    font-size: 2em;
+    color: white;
 }

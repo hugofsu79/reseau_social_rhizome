@@ -68,14 +68,15 @@
                                     {{ Auth::user()->pseudo }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="collapse_co_deco dropdown-menu dropdown-menu-end text-center"
+                                    aria-labelledby="navbarDropdown">
 
                                     <a href="{{ route('users.edit', $user = Auth::user()) }}">Mon compte</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Déconnexion') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -118,6 +119,12 @@
 
     <!-- ajouter un footer -->
 
+
+
 </body>
+<footer class="text-center">
+    <p> RHIZOME 2023 - codé dans la mezzanine de la médiathèque à Niort</p>
+
+</footer>
 
 </html>

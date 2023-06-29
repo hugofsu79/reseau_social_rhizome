@@ -7,7 +7,9 @@
 @section('content')
     <main class="container">
 
-        <h1 class="pb-3">Modifier mon commentaire</h1>
+        <h1 class="pb-5">Modifier mon commentaire</h1>
+
+        
         <div class="row">
 
             <form class="col-4 mx-auto" action="{{ route('comment.update', $post) }}" method="POST">
