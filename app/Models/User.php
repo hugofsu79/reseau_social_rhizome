@@ -63,14 +63,9 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    // public function isAdmin()
-    // {
-    //     // return $this->role == "admin";
-    //     return $this->role_id == 2;
-    // }
-
-    public function isAdmin() {
-        return false;
+    public function isAdmin()
+    {
+        return $this->role_id == 2;
     }
 
 }

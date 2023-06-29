@@ -42,6 +42,8 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
+        $this->authorize('update', $comment);
+
         // Je renvoie une vue en y injectant le message
         // $this->authorize('update', $post);
         return view('comments/edit', ['comment' => $comment]);
@@ -52,6 +54,8 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
+        $this->authorize('update', $comment);
+
         $request->validate([
             //'name de l'input-> [critères]
             'content' => 'required|min:25|max:1000',
@@ -72,7 +76,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        // $this->Authorize('delete', $post);
+        $this->authorize('delete', $comment);
         $comment->delete();
         return redirect()->route('home')->with('message', 'Commentaire supprimé avec succès');;
     }

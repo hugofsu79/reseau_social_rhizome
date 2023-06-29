@@ -122,22 +122,21 @@
 
                             <!-- ** Bouton modifier=> mène à la page modification **-->
 
-                            {{-- @can('update', $post) --}}
-                            {{-- <a href="{{ route('posts.edit', $post) }}"> --}}
-                            <button class="style_button btn btn-primary  rounded-pill m-1">modifier</button>
-                            </a>
-                            {{-- @endcan --}}
+                            @can('update', $post)
+                                <a href="{{ route('posts.edit', $post) }}">
+                                    <button class="style_button btn btn-primary  rounded-pill m-1">modifier</button>
+                                </a>
+                            @endcan
 
 
                             <!-- ** Bouton supprimer  post -> edit -> (comme le user)**-->
-                            {{-- @can('delete', $post) --}}
-
-                            <form action="{{ route('posts.destroy', $post) }}" method="post">
-                                @method ("delete") @csrf
-                                <button type="submit"
-                                    class="style_button btn btn-primary  rounded-pill  m-1">Supprimer</button>
-                            </form>
-                            {{-- @endcan --}}
+                            @can('delete', $post)
+                                <form action="{{ route('posts.destroy', $post) }}" method="post">
+                                    @method ("delete") @csrf
+                                    <button type="submit"
+                                        class="style_button btn btn-primary  rounded-pill  m-1">Supprimer</button>
+                                </form>
+                            @endcan
                         </div>
                     </div>
 
@@ -231,8 +230,6 @@
 
                     @foreach ($post->comments as $comment)
                         <div class="commentaire_user card w-50 mx-auto mb-2">
-                            {{-- @can('update', $comment)
-                    @endcan --}}
 
                             <div class="all_avatar m-2">
                                 <p>Posté par {{ $comment->user->pseudo }}</p>
@@ -252,18 +249,24 @@
                                 <div class="row">
 
                                     <div class="col">
-                                        <a href="{{ route('comments.edit', $comment) }}">
-                                            <button class="style_button btn btn-primary rounded-pill m-1">modifier</button>
-                                        </a>
+                                        @can('update', $comment)
+                                            <a href="{{ route('comments.edit', $comment) }}">
+                                                <button class="style_button btn btn-primary rounded-pill m-1">modifier</button>
+                                            </a>
+                                        @endcan
                                     </div>
 
+
+
                                     <div class="col">
-                                        <form action="{{ route('comments.destroy', $comment) }}" method="post">
-                                            @method ("delete")
-                                            @csrf
-                                            <button type="submit"
-                                                class="style_button btn btn-primary  rounded-pill  m-1">Supprimer</button>
-                                        </form>
+                                        @can('delete', $comment)
+                                            <form action="{{ route('comments.destroy', $comment) }}" method="post">
+                                                @method ("delete")
+                                                @csrf
+                                                <button type="submit"
+                                                    class="style_button btn btn-primary  rounded-pill  m-1">Supprimer</button>
+                                            </form>
+                                        @endcan
                                     </div>
 
                                 </div>

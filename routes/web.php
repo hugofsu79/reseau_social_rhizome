@@ -42,29 +42,11 @@ Route::resource('/users', App\Http\Controllers\UserController::class)->except('i
 
 Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index', 'create', 'show');
 
-
-// route::delete()
-
 //******************************* Route  resource comment ***************/
 
 Route::resource('/comments', App\Http\Controllers\CommentController::class)->except('index', 'create', 'show');
 
 
-// routes/web.php ou routes/api.php
-
-Route::post('/comments/{comment}/replies', [CommentReplyController::class, 'store'])->name('comment.replies.store');
-
-
-// route comment
-
-
-
-        //≠≠≠≠≠≠≠≠ Policies ≠≠≠≠≠≠≠≠≠≠≠≠ //
-
-    // Route::resource('posts', 'PostController', ['except' => ['edit']]);
-    Route::get('/posts/{post}/edit', 'PostController@edit')->middleware('can:update-post,post');
-                    //\__________________________________lien entre les deux____/\//
 //******************************* Route Search ***************/
-
 
 Route::get('/search', [App\Http\Controllers\PostController::class, 'search'])->name('search');

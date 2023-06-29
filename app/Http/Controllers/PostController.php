@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Auth\Access\Gate;
@@ -52,7 +51,10 @@ class PostController extends Controller
      */
 
     public function edit(Post $post)
+    
     {
+        $this->authorize('update', $post);
+
         // Je renvoie une vue en y injectant le message
         // $this->authorize('update', $post);
         return view('posts/edit', ['post' => $post]);
@@ -65,8 +67,7 @@ class PostController extends Controller
     {                                      //$request['content'] = "Salut les gars"
         //1) On valide les champs en précisant les critères attendus
 
-        $post->user_id = 300;
-        $this->authorize('update-post', $post);
+        $this->authorize('update', $post);
 
         $request->validate([
             //'name de l'input-> [critères]
@@ -88,7 +89,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // $this->Authorize('delete', $post);
+        $this->authorize('delete', $post);
+
         $post->delete();
         return redirect()->route('home')->with('message', 'Message supprimé avec succès');;
     }
