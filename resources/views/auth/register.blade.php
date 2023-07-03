@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container p-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                <div class="register_formulaire card">
+                    <h3 class="card-header text-white">{{ __('Register') }}</h3>
 
-                    <div class="card-body">
+                    <div class="ccard-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
-                            <div class="row mb-3">
+                            <div class="row mt-3 mb-3">
                                 <label for="pseudo" class="col-md-4 col-form-label text-md-end">{{ __('pseudo') }}</label>
 
                                 <div class="col-md-6">
@@ -28,10 +28,18 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('image') }}</label>
+                                <label for="image"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('image') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="image" type="text" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" required autocomplete="image" autofocus>
+                                    <input type="file" name="image"
+                                        class="bouton_ajout_image form-control rounded-pill">
+
+                                    @error('image')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror 
 
                                     @error('image')
                                         <span class="invalid-feedback" role="alert">
@@ -42,8 +50,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">e-mail</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-end">e-mail</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -59,8 +66,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">mot de passe</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-end">mot de passe</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -76,8 +82,8 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-end">confirmez le mot de passe</label>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">confirmez le mot
+                                    de passe</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -87,7 +93,7 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="submit btn btn-success mb-2 rounded-pill">
                                         Valider
                                     </button>
                                 </div>

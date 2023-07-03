@@ -28,7 +28,7 @@ class PostController extends Controller
         $request->validate([
             //'name de l'input-> [critères]
             'content' => 'required|min:25|max:1000',
-            'image' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,gif,svg|max:2048',
             'tags' => 'required|min:3|max:50'
             // Autre syntaxe possible : 'content' => ['required', 'min:25', 'max:1000']
         ]);
@@ -37,7 +37,7 @@ class PostController extends Controller
         Post::create([                                  // 3 syntaxe possibles pour accéder au contenu de $request
             'content' => $request->content,              // Syntaxe objet 
             'tags' => $request['tags'],                 // syntaxe tableau associatif
-            'image' => $request->input('image'),        // autre syntaxe
+            'image' => isset($request['image']) ? uploadImage($request['image']) : null,
             'user_id' => Auth::user()->id               // J'accède à l'id du user connecté
         ]);
 
@@ -47,7 +47,7 @@ class PostController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the s pecified resource.
      */
 
     public function edit(Post $post)

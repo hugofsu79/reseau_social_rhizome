@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <main class="container p-5">
+    <main class="container p-5w">
 
         <h1 class="mb-5 pt-5">Modifier mon poste</h1>
         <div class="row text-center">

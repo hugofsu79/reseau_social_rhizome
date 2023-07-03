@@ -38,6 +38,7 @@ class UserController extends Controller
     //************************  UPDATE : Permet de valider les mofications effectuées   ************************//
 
     public function update(Request $request, user $user)
+    
     {
         $request->validate([
             'pseudo' => 'required|max:40',

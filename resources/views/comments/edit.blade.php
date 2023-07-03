@@ -5,12 +5,12 @@
 @endsection
 
 @section('content')
-    <main class="container">
+    <main class="container p-5">
 
         <h1 class="pb-5">Modifier mon commentaire</h1>
 
         
-        <div class="row">
+        <div class="commentaire_modif row">
 
             <form class="col-4 mx-auto" action="{{ route('comments.update', $comment) }}" method="POST">
                 @csrf
@@ -34,7 +34,7 @@
                         value="{{ $comment->tags }}" id="tags">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Valider</button>
+                <button type="submit" class="btn btn-primary mt-4">Valider</button>
             </form>
         </div>
     </main>

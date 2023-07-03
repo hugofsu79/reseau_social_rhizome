@@ -30,6 +30,20 @@ h1 {
     font-weight: 400;
 }
 
+/* • profil page user • */
+
+
+.nom_profil {
+    font-size: 2em;
+    color: #FBFFDC;
+}
+
+.carte_identité {
+    background-color: #A3B291;
+    padding: 2em;
+    border-radius: 2em;
+}
+
 .amazonie {
     font-family: "bd-supper", sans-serif;
     font-size: 10em;
@@ -47,16 +61,38 @@ h1 {
 
 .connexion {
     border-style: none;
+    margin-bottom: 15em;
     background-color: #A3B291;
 
 }
 
 .connexion_title {
     font-size: 12em;
+    background-size: contain;
+    background-image: url(./footer.png);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
+
+/* • login • */
+
+.login_formulaire {
+    margin-bottom: 38em;
+}
+
+.register_formulaire {
+    margin-bottom: 33em;
+}
+
+
 .baseline {
-    margin-top: 15em;
+    padding-top: 2em;
+    margin-bottom: 5em;
+    border-block-start: solid;
+    color: #A3B291;
+    writing-mode: horizontal-tb;
 }
 
 h2,
@@ -85,10 +121,20 @@ a {
     background-color: #A3B291;
 }
 
+
 .recherche {
     margin: 1em;
     border-style: none;
 }
+
+.recherche_buttom,
+.card-header,.submit {
+    background-color: #A3B291;
+    border-style: none;
+}
+
+
+
 
 .collapse_co_deco {
     background-color: #ebf3e2;
@@ -98,11 +144,7 @@ a {
 
 
 
-.commentaire_publication {
-    background-color: #ebf3e2;
-    border-radius: 1em;
-    padding: 2em;
-}
+/* publication home */
 
 .publication_home {
     background-color: #142207;
@@ -112,6 +154,33 @@ a {
     border-style: none;
 }
 
+
+/* commentaire's */
+
+.commentaire_publication {
+    background-color: #ebf3e2;
+    border-radius: 1em;
+    padding: 2em;
+}
+
+.creat_commentaire {
+    background-color: #142207;
+    border-radius: 40px;
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+}
+.commentaire_modif {
+    margin-bottom: 35em;
+    padding: 2em;
+    border-radius: 40px;
+    background-color: #A3B291;
+
+}
+
+.bouton_ajout_image {
+    background-color: #A3B291;
+}
 
 .parcourir {
     background-color: #A3B291;
@@ -130,6 +199,7 @@ a {
 
 .message_publication {
     background-color: #A3B291;
+    border-style: none;
     margin-bottom: 2em;
 }
 
@@ -149,6 +219,7 @@ a {
 
 .image_publie {
     border-radius: 2em;
+    width: 45em;
 
 }
 
@@ -165,6 +236,10 @@ a {
     background-color: #A3B291;
     border-style: none;
 
+}
+
+.commentaire_user {
+    width: 24em;
 }
 
 .boutons_publications {
@@ -187,18 +262,86 @@ a {
 .formulaire {
     background-color: #A3B291;
     border-radius: 2em;
+    margin-bottom: 29em;
 }
 
 /* • footer • */
 
 footer {
-    background-size: contain;
     padding: 4em;
     background-image: url(../css/footer.png);
+    background-size: contain;
     /* object-fit: cover; */
 }
 
 footer p {
     font-size: 2em;
     color: white;
+}
+
+
+
+.quatrecentquatre {
+    font-size: 50em;
+    background-size: contain;
+    background-image: url(./404.jpeg);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* portable */
+
+@media only screen and (max-width: 390px) {
+    .photo_profil {
+        width: 13em !important;
+        height: auto !important;
+    }
+
+    .administrateur {
+        font-size: 1em !important;
+    }
+    .boutons_trois{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* tablette */
+@media only screen and (max-width: 768px) {
+
+    .image_publie {
+        width: 100%;
+        height: auto;
+    }
+
+    h1 {
+        font-size: 4em !important;
+    }
+
+    .administrateur {
+        font-size: 2em !important;
+    }
+
+    .connexion {
+        margin-bottom: 25em;
+    }
+
+    .connexion_title {
+        margin-top: 2.5em;
+    }
+
+    .ensemble {
+        margin-bottom: -9em;
+    }
+
+    /* profil */
+    .photo_profil {
+        width: 30em !important;
+        height: auto !important;
+    }
+    .boutons_trois{
+        display: flex;
+        flex-direction: column;
+    }
 }
